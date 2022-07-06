@@ -85,7 +85,7 @@ def threaded_client(conn):
             # If data is blank then respond with blank.
             if sentex == "":
                 sentex = reply
-            # Print help menu.
+            # /help - print help menu.
             if sentex == "/help":
                 conn.sendall(str.encode('/help - list all commands\r\n'  
                 '/info - server information and status\r\n'
@@ -93,21 +93,22 @@ def threaded_client(conn):
                 '/movie - get movie info. Ex: /movie The Matrix\r\n'
                 '/quit - disconnect from server\r\n'
                 '/list - lists all clients connected\r\n\r\n'))
-            # Print client info.
+            # /info - print client info.
             elif sentex == "/info":
                 for i in clients:
                     if i is not s:
                         msgc = msgc +1
                 conn.sendall(str.encode(str(msgc) + " clients online!\r\n"))
-            # Print client list
+            # /client - print client list.
             elif sentex == "/list":
                 conn.send(str.encode(str(clients) + "\r\n"))
-            # Print inventory menu
+            # /inventory - print inventory menu.
             elif sentex == "/inventory":
                 conn.sendall(str.encode("Inventory Placeholder!"))
-            # Accept /roll xdx for performing dice rolls. Ex: /roll 2d6
+            # /roll - check to see if user forgot to specify dice roll.
             elif "/roll" in sentex and "/roll" == sentex:
                 conn.sendall(str.encode("Incorrect format. Ex: /roll 2d6\r\n"))
+            # /roll - perform dice rolls.
             elif "/roll" in sentex:
                 stringsplit = sentex.split(" ")
                 xdx = stringsplit[1]
