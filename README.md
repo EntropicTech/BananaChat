@@ -1,2 +1,2 @@
 # BananaChat
- A telnet chat built in Python.
+ A telnet chat server built in Python.
